@@ -67,12 +67,12 @@ comment
 
 # 目次
 
-- 📝 **関数プログラミングのデモ** - focus on the content with Markdown, and then style them later
-- 🎨 **関数プログラミングとはなにか** - theme can be shared and used with npm packages
-- 🧑‍💻 **関数型言語とはなにか** - code highlighting, live coding with autocompletion
-- 🤹 **関数プログラミングの何が嬉しいか** - embedding Vue components to enhance your expressions
-- 🎥 **いろんな言語に見られる関数プログラミングの影響** - built-in recording and camera view
-- 📤 **関数プログラミングをやってみる** - export into PDF, PNGs, or even a hostable SPA
+-  **関数プログラミングのデモ**    - 関数プログラミングではどんな感じで問題を解くか簡単にデモします。
+-  **関数プログラミングとはなにか**  - 関数プログラミングとはなにか説明します。
+-  **関数型言語とはなにか**       - 関数型言語とはなにか説明します。
+-  **関数プログラミングの何が嬉しいか** - 関数プログラミングのメリットを説明します。
+-  **いろんな言語に見られる関数プログラミングの影響** - 最近のプログラミング言語は関数プログラミングの要素を取り入れている事が多いので紹介します。
+-  **関数プログラミングをやってみる** - 実際に手を動かしてもらえるような問題を用意しました。
 
 ---
 layout: cover
@@ -357,12 +357,8 @@ i.e. 関数の結果として関数を返すことができる。
 - SML
 
 ---
-layout: image-right
-image: "https://i.gyazo.com/af35659e7054f668591ca135d6b3ef14.jpg"
----
 
 ## 関数型言語の分類
-
 以下の6つの視点で分類する。
 
 1. 動的型付けと静的型付け
@@ -372,11 +368,15 @@ image: "https://i.gyazo.com/af35659e7054f668591ca135d6b3ef14.jpg"
 5. 依存型
 6. 評価戦略
 
+<img src="https://i.gyazo.com/af35659e7054f668591ca135d6b3ef14.jpg">
+
+
 <style>
-  image {
-    height: 10px;
-    width: 10px;
-    object-fit: fill; 
+  img {
+    position:absolute; 
+    top:5%; 
+    right:5%;
+    width: 60%;
   }
 </style>
 
@@ -456,6 +456,10 @@ image: "https://i.gyazo.com/af35659e7054f668591ca135d6b3ef14.jpg"
 - manaba(Haskell)
 
 等
+
+<div class="p-3">
+  <Tweet id="20" />
+</div>
 
 ---
 layout: cover
