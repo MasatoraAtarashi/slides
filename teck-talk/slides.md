@@ -1,3 +1,14 @@
+<style>
+.text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform : translate(-50%,-50%);
+}
+span {
+  color: red;
+}
+</style>
 # Tech Talk
 関数プログラミング入門
 
@@ -72,21 +83,9 @@ layout: cover
 <h2 class="text"><span>プログラミングパラダイム</span>の1つ</h2>
 </div>
 
-<style>
-.text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform : translate(-50%,-50%);
-}
-span {
-  color: red;
-}
-</style>
-
 ---
 
-# プログラミングのパラダイム
+## プログラミングのパラダイム
 
 有名なプログラミングパラダイムとして、以下の３つがある。
 
@@ -99,19 +98,6 @@ span {
 <div>
 <h2 class="text">プログラムとは、<span>計算機が行うべき命令の列</span>であるとするパラダイム。</h2>
 </div>
-
-<style>
-.text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform : translate(-50%,-50%);
-}
-span {
-  color: red;
-}
-</style>
-
 <!--
 Cとか
 -->
@@ -122,18 +108,6 @@ Cとか
 <h2 class="text">プログラムとは、<span>オブジェクトとそのメッセージング</span>であるとするパラダイム。</h2>
 </div>
 
-<style>
-.text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform : translate(-50%,-50%);
-}
-span {
-  color: red;
-}
-</style>
-
 <!--
 Java, Ruby
 -->
@@ -143,18 +117,6 @@ Java, Ruby
 <div>
 <h2 class="text">プログラムとは、<span>関数</span>であるとするパラダイム。値に<span>関数</span>を適用していくことで計算をすすめる。</h2>
 </div>
-
-<style>
-.text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform : translate(-50%,-50%);
-}
-span {
-  color: red;
-}
-</style>
 <!--
 Cとか
 -->
