@@ -3,7 +3,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform : translate(-50%,-50%);
+  width: 75%;
+  transform : translate(-50%,-50%)
 }
 span {
   color: red;
@@ -60,6 +61,7 @@ comment
 - [関数プログラミングはなぜ重要か](https://www.sampou.org/haskell/article/whyfp.html)
 - [Scala研修テキスト by ドワンゴ](https://scala-text.github.io/scala_text/)
 - [Scala関数型デザイン&プログラミング](https://amzn.to/3oQLThL)
+- [カリー化と部分適用（JavaScriptとHaskell）](https://qiita.com/7shi/items/a0143daac77a205e7962)
 
 ---
 
@@ -224,7 +226,9 @@ layout: cover
 
 関数型言語では、(関数合成、部分適用や高階関数等によって)関数を実行時に生成できる。
 
-#### 部分適用とは
+---
+
+## 部分適用とは
 
 関数の一部にだけ引数を与えて関数を作ること。例えば、２つの引数の合計を返す関数`add`を以下のように定義する。
 
@@ -243,8 +247,16 @@ add1 = add 1
 3
 ```
 
-#### 高階関数とは
-a
+---
+
+## 高階関数とは
+<br>
+
+- 結果が関数になる関数
+- 引数として関数を要求する関数
+
+を<span>高階関数</span>という(詳細は後のページで説明)。
+
 
 ---
 
@@ -270,14 +282,15 @@ a
 (λ f . f(2)) ((λ x . x + 1)) = 2 + 1 = 3
 ```
 
-となる。
+となる。↑は高階関数
 
 ---
 
 ## 5. 手続きや関数の結果として返すことができる
-- [ ] 図を貼る
 
 値域が特定の関数の集合となるような関数を作ることができる。
+
+
 
 ---
 
