@@ -1004,8 +1004,39 @@ object Main extends App{
 ---
 
 # 問題(2)
-aiueo
+map
+
+以下の???を埋めてmapメソッドをfoldLeftとreverseを使って実装してください。
+```scala
+object Main extends App{
+    def reverse[T](list: List[T]): List[T] = list.foldLeft(Nil: List[T])((a, b) => b :: a)
+
+    def map[T, U](list: List[T])(f: T => U): List[U] = ???
+}
+```
+
+map メソッドは次のようにして使います。
+```scala
+println(map(List(1, 2, 3))(x => x + 1)) // List(2, 3, 4)
+println(map(List(1, 2, 3))(x => x * 2)) // List(2, 4, 6)
+println(map(List[Int]())(x => x * x)) // Nil
+println(map(List(1, 2, 3))(x => 0)) // List(0, 0, 0)
+```
+
 ---
 
 # 問題(2)の答え
-aiuer
+```scala {3-5}
+object Main extends App{
+    def reverse[T](list: List[T]): List[T] = list.foldLeft(Nil: List[T])((a, b) => b :: a)
+
+    def map[T, U](list: List[T])(f: T => U): List[U] = {
+      list.foldLeft(Nil:List[U]){(x, y) => f(y) :: x}.reverse
+    }
+
+    println(map(List(1, 2, 3))(x => x + 1)) // List(2, 3, 4)
+    println(map(List(1, 2, 3))(x => x * 2)) // List(2, 4, 6)
+    println(map(List[Int]())(x => x * x)) // Nil
+    println(map(List(1, 2, 3))(x => 0)) // List(0, 0, 0)
+}
+```
