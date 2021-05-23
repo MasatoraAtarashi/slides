@@ -636,6 +636,8 @@ layout: cover
 
 ## 5. 束縛によるメリット
 
+- [ ] 図を入れる
+
 破壊的代入がないため、コードリーディングが楽。
 
 ---
@@ -738,13 +740,73 @@ if imagePaths["star"]?.hasSuffix(".png") == true {
  -->
 ---
 
-## Maybeモナド
-あ
+## Maybeモナド(1)
+計算は失敗することがある。例えば、以下の非負整数を2乗する関数`square`は入力が負数の場合失敗する。
+```hs
+square :: Integer -> Maybe Integer
+square n
+| 0 <= n = Just (n * n) -- 入力が非負整数の場合、入力を2乗して返す
+| otherwise = Nothing --それ以外の場合、失敗
+```
+
+次に、整数の1/2乗を返す関数`squareRoot`を考える。`squareRoot`は入力が負数の場合・結果が整数にならない場合に失敗する。
+```hs
+squareRoot :: Integer -> Maybe Integer
+squareRoot n
+| 0 <= n = squareRoot' 1
+| otherwise = Nothing where -- 入力が負数の場合失敗
+squareRoot' x
+  | n > x * x = squareRoot' (x + 1)
+  | n < x * x = Nothing -- 結果が整数にならない場合失敗
+  | otherwise = Just x
+```
+
+上記の関数`square`と`squareRoot`を順番に適用すれば、元の数が得られる。
+
+しかし、これらの関数は失敗することがあるので、単純に関数合成を行うことができない。
+
+<style>
+  p {
+    font-size: 12px;
+  }
+</style>
 
 <!-- 
   Maybeモナドを例に先程の３つの疑問に答えます。
   
+  2乗した後1/2乗するので。
 -->
+---
+
+## Maybeモナド(2)
+`square`と`squareRoot`のような失敗する可能性のある関数を合成するには、以下のように場合分けする必要がある。
+```hs
+squareAndSquareRoot1 :: Integer -> Maybe Integer 
+squareAndSquareRoot1 n = case square n of
+                            Nothing -> Nothing -- squareが失敗したら→失敗
+                            Just nn -> squareRoot nn -- squareが成功したら→squareRootを適用
+```
+
+上記は引数が１つしかなく、関数も２つだけなのでそこまで問題ない。
+
+しかし、仮に『2つの整数にそれぞれ関数`square`を適用し、結果を掛け算したものを関数`squareRoot`に与える』という処理を書く場合、以下のように冗長な記述となる。
+```hs
+squareAndSquareRoot2 :: Integer -> Integer -> Maybe Integer 
+squareAndSquareRoot2 m n = case square m of
+                            Nothing -> Nothing -- square mが失敗したら→失敗
+                            Just mm -> case square n of -- square mが成功
+                                          Nothing -> Nothing -- square nが失敗したら→失敗
+                                          Just nn -> squareRoot (mm * nn) -- square mもsquare nも成功
+```
+
+<style>
+  p {
+    font-size: 12px;
+  }
+</style>
+---
+
+## Maybeモナド(3)
 ---
 
 
