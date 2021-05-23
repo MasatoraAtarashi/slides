@@ -595,21 +595,79 @@ var inc = func(y int) int { return add(1, y) } // インクリメント
 
 ## 関数プログラミングの影響 ~モナド~
 
-Java, Swift
-- [ ] SwiftのOptionalモナドとか書く
-- [ ] モナドとはなにか説明できるようにする
+Java, Swift等ではモナドが採用されている。
+
+#### SwiftのOptionalモナド
+
+```swift
+let number: Int? = Optional.some(42)
+let noNumber: Int? = Optional.none
+print(number) // Optional(42)
+print(noNumber) // nil
+print(noNumber == nil) // true
+```
+
+<br>
+
+#### SwiftのOptional Chaining
+```swift
+let imagePaths = ["star": "/glyphs/star.png",
+                  "portrait": "/images/content/portrait.jpg",
+                  "spacer": "/images/shared/spacer.gif"]
+if imagePaths["star"]?.hasSuffix(".png") == true {
+    print("The star image is in PNG format")
+}
+
+// The star image is in PNG format
+```
+
+参考: https://developer.apple.com/documentation/swift/optional
+<!-- 
+  Swiftでは辞書型のリスト構造からキーで要素を取得するとOptional型になる。
+  リストに存在する時のみ処理をする、みたいなことができる。
+ -->
+
 ---
 
 ## モナドとは
+
+『モナド』とは、<span>文脈を伴う計算同士を組み合わせ可能にする仕組み</span>のこと
+
+<br>
+
+#### モナドの例
+- Maybeモナド - <span>失敗の可能性</span>という文脈を扱う
+- Readerモナド - <span>参照できる環境を共有</span>したい時に使う(configから環境変数を読み込むとか)
+- Writerモナド - <span>主要な計算の横で、別の値も一直線に合成</span>したいときに使う
+- Stateモナド - <span>状態の引き継ぎ</span>という文脈を扱う
+- IOモナド - <span>副作用</span>を伴う
+
+等々
+
+<!-- 
+  1. 文脈はなにか
+  2. 文脈を持つ計算同士の組み合わせが難しいのはなぜか
+  3. 文脈を持つ計算をうまく扱いたいのはなぜか
+ -->
 ---
+
+## 文脈とは
+あ
+
+<!-- 
+  例えば、失敗する可能性のある関数Aと
+  文脈とは、
+-->
+---
+
 
 ## 関数プログラミングの影響 ~その他~
 その他にも関数プログラミングの影響を受けた機能は色々あります。
-- RustやSwiftのデータ型定義とパターンマッチ
-- C++のコンパイル時計算
-- Swift・Rubyの演算子定義
-- Python, C#のリスト内包表記
-- 型システムの強化(型推論等)
+- RustやSwiftの<span>データ型定義とパターンマッチ</span>
+- C++の<span>コンパイル時計算</span>
+- Swift・Rubyの<span>演算子定義</span>
+- Python, C#の<span>リスト内包表記</span>
+- 型システムの強化(<span>型推論</span>等)
 
 等々
 
