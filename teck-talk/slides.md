@@ -127,12 +127,6 @@ void quick_sort (int array[], int left, int right) {
 </div>
 参考: https://qiita.com/omu58n/items/7794f097b2c569a469bc
 
-<style>
-  code {
-    font-size: 1px;
-    line-height: 0.001px;
-  }
-</style>
 <!-- qiitaからパクってきたクイックソート -->
 ---
 
@@ -511,7 +505,7 @@ i.e. 関数の結果として関数を返すことができる。
 ---
 
 ## 関数型言語の歴史
-- [ ] pdfにすると位置おかしい
+
 
 <img src="https://i.gyazo.com/9492cfbd0e0c8469c98b0706dd91d34a.png">
 
