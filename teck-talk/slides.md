@@ -913,20 +913,39 @@ $ sbt console
 
 ---
 
-# 最低限の文法
-## List
+# 最低限の文法(1)
+List
+
 ScalaではListは以下のように定義できます。
 ```scala
 val lst = List(1, 2, 3, 4, 5)
 // lst: List[Int] = List(1, 2, 3, 4, 5)
 ```
 
-<br>
+::（コンスと読みます）は既にあるListの先頭に要素をくっつけるメソッドです。
+```scala
+val a1 = 1 :: Nil
+// a1: List[Int] = List(1)
 
-## foldLeft
+val a2 = 2 :: a1
+// a2: List[Int] = List(2, 1)
+
+val a3 = 3 :: a2
+// a3: List[Int] = List(3, 2, 1)
+
+val a4 = 4 :: a3
+// a4: List[Int] = List(4, 3, 2, 1)
+
+val a5 = 5 :: a3
+// a5: List[Int] = List(5, 3, 2, 1)
+```
+
+---
+
+# 最低限の文法(2)
+foldLeft
+
 foldLeftはScalaにとって非常に基本的なメソッドです。(Haskellにおけるfoldl)
-
-foldLeftの定義は以下
 ```scala
 def foldLeft[B](z: B)(f: (B, A) ⇒ B): B
 ```
@@ -935,10 +954,8 @@ def foldLeft[B](z: B)(f: (B, A) ⇒ B): B
   - zが結果の初期値
   - リストを左からたどりながらfを適用していく
  -->
----
 
-## foldLeft
-イメージを湧きやすくするため以下のサンプルコードを使ってfoldLeftの動作を説明する。
+イメージを湧きやすくするため以下のサンプルコードを使ってfoldLeftの動作を説明します。
 ```scala
 List(1, 2, 3).foldLeft(0)((x, y) => x + y)
 ```
@@ -962,15 +979,15 @@ List(1, 2, 3).foldLeft(0)((x, y) => x + y)
 ---
 
 # 問題(1)
-Listの要素の合計をもとめる
+reverse
 
-以下の???を埋めてListの合計を計算する関数`sum`を定義してください。
+`foldLeft`を用いて、Listの要素を反転させる次のシグニチャを持ったメソッドreverseを実装してください。
 
 ```scala
 object Main extends App{
-    def sum[T](list: List[Int]) = ???
+    def reverse[T](list: List[T]): List[T] = ???
 
-    print(sum(List(1, 2, 3))) // 6
+    print(reverse(List(1, 2, 3, 4, 5))) // List(5, 4, 3, 2, 1)
 }
 ```
 
@@ -979,9 +996,9 @@ object Main extends App{
 # 問題(1)の答え
 ```scala
 object Main extends App{
-    def sum[T](list: List[Int]) = list.foldLeft(0)((x, y) => x + y)
+    def reverse[T](list: List[T]): List[T] = list.foldLeft(Nil: List[T])((a, b) => b :: a)
 
-    print(sum(List(1, 2, 3))) // 6
+    print(reverse(List(1, 2, 3, 4, 5))) // List(5, 4, 3, 2, 1)
 }
 ```
 ---
