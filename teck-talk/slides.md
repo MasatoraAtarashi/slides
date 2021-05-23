@@ -892,20 +892,98 @@ layout: cover
 ---
 
 ## 最低限の知識解説
+- 実行環境構築方法
+- 最低限の文法
+- 問題(1)
+- 問題(2)
 ---
 
 ## 実行環境作成方法
 - Web
+  - https://paiza.io/ja/projects/new
+
+
+<br>
+
 - ローカル
+```bash
+$ brew install sbt
+$ sbt console
+```
+
 ---
 
 # 最低限の文法
+## List
+ScalaではListは以下のように定義できます。
+```scala
+val lst = List(1, 2, 3, 4, 5)
+// lst: List[Int] = List(1, 2, 3, 4, 5)
+```
+
+<br>
+
+## foldLeft
+foldLeftはScalaにとって非常に基本的なメソッドです。(Haskellにおけるfoldl)
+
+foldLeftの定義は以下
+```scala
+def foldLeft[B](z: B)(f: (B, A) ⇒ B): B
+```
+
+<!-- 
+  - zが結果の初期値
+  - リストを左からたどりながらfを適用していく
+ -->
+---
+
+## foldLeft
+イメージを湧きやすくするため以下のサンプルコードを使ってfoldLeftの動作を説明する。
+```scala
+List(1, 2, 3).foldLeft(0)((x, y) => x + y)
+```
+
+上記の処理は
+- 初期値: 0
+- List(1, 2, 3)を左からたどって`(x, y) => x + y`を適用していく
+
+<br>
+
+```
+       +
+      / \
+     +   3
+    / \
+   +   2
+  / \
+ 0   1
+```
+
 ---
 
 # 問題(1)
+Listの要素の合計をもとめる
+
+以下の???を埋めてListの合計を計算する関数`sum`を定義してください。
+
+```scala
+object Main extends App{
+    def sum[T](list: List[Int]) = ???
+
+    print(sum(List(1, 2, 3))) // 6
+}
+```
+
 ---
 
 # 問題(1)の答え
+```scala
+object Main extends App{
+    def sum[T](list: List[Int]) = list.foldLeft(0)((x, y) => x + y)
+
+    print(sum(List(1, 2, 3))) // 6
+}
+```
 ---
 
 # 問題(2)
