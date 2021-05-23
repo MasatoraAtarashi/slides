@@ -61,6 +61,7 @@ comment
 - [関数プログラミングはなぜ重要か](https://www.sampou.org/haskell/article/whyfp.html)
 - [Scala研修テキスト by ドワンゴ](https://scala-text.github.io/scala_text/)
 - [Scala関数型デザイン&プログラミング](https://amzn.to/3oQLThL)
+- [Scala by Example](https://www.scala-lang.org/docu/files/ScalaByExample-ja_JP.pdf)
 - [カリー化と部分適用（JavaScriptとHaskell）](https://qiita.com/7shi/items/a0143daac77a205e7962)
 
 ---
@@ -122,18 +123,7 @@ void quick_sort (int array[], int left, int right) {
     quick_sort(array, pivot+1, right);
   }
 }
-
-int main (void) {
-  int array[10] = { 2, 1, 8, 5, 4, 7, 9, 0, 6, 3 };
-  int i;
-  quick_sort(array, 0, 9);
-
-  for (i = 0; i < 10; i++) { printf("%d ", array[i]); }
-
-  return 0;
-}
 ```
-
 </div>
 参考: https://qiita.com/omu58n/items/7794f097b2c569a469bc
 
@@ -143,7 +133,6 @@ int main (void) {
     line-height: 0.001px;
   }
 </style>
-
 <!-- qiitaからパクってきたクイックソート -->
 ---
 
@@ -155,11 +144,21 @@ Haskell
 
 Scala
 ```hs
-ku = ikku
+sort [] = [] 
+sort (x:xs) = sort [ a | a <- xs, a < x ] ++ x : sort [ a | a <- xs, x <= a]
 ```
 
 ```scala
-ku = ikku
+def quickSort(xs: Array[Int]): Array[Int] = {
+    if (xs.length <= 1) xs
+    else {
+        val pivot = xs(xs.length / 2)
+        Array.concat(
+            quickSort(xs filter (pivot >)),
+            xs filter (pivot ==),
+            quickSort(xs filter (pivot <)))
+    }
+}
 ```
 
 </div>
@@ -890,9 +889,6 @@ layout: cover
 ---
 
 # 関数プログラミングをやってみる
----
-
-## デモの解説
 ---
 
 ## 最低限の知識解説
