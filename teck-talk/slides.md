@@ -741,6 +741,7 @@ if imagePaths["star"]?.hasSuffix(".png") == true {
 ---
 
 ## Maybeモナド(1)
+
 計算は失敗することがある。例えば、以下の非負整数を2乗する関数`square`は入力が負数の場合失敗する。
 ```hs
 square :: Integer -> Maybe Integer
@@ -748,6 +749,8 @@ square n
 | 0 <= n = Just (n * n) -- 入力が非負整数の場合、入力を2乗して返す
 | otherwise = Nothing --それ以外の場合、失敗
 ```
+
+<v-click>
 
 次に、整数の1/2乗を返す関数`squareRoot`を考える。`squareRoot`は入力が負数の場合・結果が整数にならない場合に失敗する。
 ```hs
@@ -761,9 +764,21 @@ squareRoot' x
   | otherwise = Just x
 ```
 
+</v-click>
+
+<div v-click class="text-xl p">
+
+上記の関数`square`と`squareRoot`を順番に適用すれば、元の数が得られる。しかし、これらの関数は失敗することがあるので、単純に関数合成を行うことができない。
+
+</div>
+
+<!-- <div v-click class="text-xl p-2">
+
 上記の関数`square`と`squareRoot`を順番に適用すれば、元の数が得られる。
 
-しかし、これらの関数は失敗することがあるので、単純に関数合成を行うことができない。
+<!-- しかし、これらの関数は失敗することがあるので、単純に関数合成を行うことができない。 -->
+
+</div> -->
 
 <style>
   p {
@@ -787,7 +802,15 @@ squareAndSquareRoot1 n = case square n of
                             Just nn -> squareRoot nn -- squareが成功したら→squareRootを適用
 ```
 
+<!-- Component usage: this will be invisible until you press "next" -->
+<v-click>
+
 上記は引数が１つしかなく、関数も２つだけなのでそこまで問題ない。
+
+</v-click>
+
+<!-- Directive usage: this will be invisible until you press "next" the second time -->
+<div v-click class="text-xl p-2">
 
 しかし、仮に『2つの整数にそれぞれ関数`square`を適用し、結果を掛け算したものを関数`squareRoot`に与える』という処理を書く場合、以下のように冗長な記述となる。
 ```hs
@@ -799,6 +822,8 @@ squareAndSquareRoot2 m n = case square m of
                                           Just nn -> squareRoot (mm * nn) -- square mもsquare nも成功
 ```
 
+</div>
+
 <style>
   p {
     font-size: 12px;
@@ -807,8 +832,48 @@ squareAndSquareRoot2 m n = case square m of
 ---
 
 ## Maybeモナド(3)
+なぜ冗長な記述になってしまうのか？
+
+<!-- Component usage: this will be invisible until you press "next" -->
+<v-click>
+
+→計算の持つ『失敗するかもしれない』という性質をうまく組み合わせることができていないから
+
+</v-click>
+
+<!-- Directive usage: this will be invisible until you press "next" the second time -->
+<div v-click class="text-xl p-2">
+
+→i.e. 『失敗するかもしれない』という文脈をうまく扱えていない
+
+</div>
 ---
 
+## Maybeモナド(4)
+そこでMaybeモナド
+
+Maybeモナドを使えば、先程の冗長な関数は以下のように記述できる。
+
+<v-click>
+
+```hs
+squareAndSquareRoot2 :: Integer -> Integer -> Maybe Integer
+squareAndSquareRoot2 m n = do
+  mm <- square m 
+  nn <- square n
+  squareRoot (mm * nn)
+```
+
+</v-click>
+
+<!-- Directive usage: this will be invisible until you press "next" the second time -->
+<div v-click class="text-xl p-2">
+
+こんな感じで、文脈を伴う計算同士をいい感じに組み合わせることができるようにするのがモナド
+
+</div>
+
+---
 
 ## 関数プログラミングの影響 ~その他~
 その他にも関数プログラミングの影響を受けた機能は色々あります。
